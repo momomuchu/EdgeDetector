@@ -3,9 +3,11 @@
 # EdgeDetector
 ## Most popular and well-known Edge detector on the module
 
+### Install
 
-
-
+```bash
+pip install EdgeDetector
+```
 
 
 
