@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import cv2
 
 def Canny_Deriche_edge_detection(img_name):
     # Read the image
@@ -25,8 +26,6 @@ def Canny_Deriche_edge_detection(img_name):
     return new_img
 
 
-import cv2
-import numpy as np
 
 def frei_chen(img_name):
     # Read the image
@@ -60,8 +59,6 @@ def log_edge_detection(img_name):
     return edges
 
 
-import cv2
-import numpy as np
 
 def prewitt_edge_detection(img_name):
     # Read the image
@@ -123,14 +120,14 @@ class EdgeDetector:
         edges = cv2.Canny(self.gray, 100, 200)
         return edges
 
-    def detect_edges_sobel(self):
+    def detect_edges_sobel(self,ksize=5):
         # Apply Sobel edge detection
-        edges = cv2.Sobel(self.gray, cv2.CV_64F, 1, 0, ksize=5)
+        edges = cv2.Sobel(self.gray, cv2.CV_64F, 1, 0, ksize=ksize)
         return edges
     
-    def detect_edges_log(self):
+    def detect_edges_log(self,ksize=5):
         # Apply the Log edge detector
-        edges = cv2.Laplacian(self.gray, cv2.CV_64F, ksize=5)
+        edges = cv2.Laplacian(self.gray, cv2.CV_64F, ksize=ksize)
         return edges
     
     def detect_edges_frei_chen(self):
@@ -187,6 +184,8 @@ class EdgeDetector:
         return edges
     def Marr_Hildreth_edge_detector(self,ksize):
         return cv2.Laplacian(self.gray, cv2.CV_64F, ksize=ksize)
+
+        
     def zero_crossing_detect_edges(self):
         # Convert the image to grayscale
         gray = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
